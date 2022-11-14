@@ -84,7 +84,6 @@ h1 {
 .subm {
   border-radius: 8px;
   border: 1px solid transparent;
-  margin-top: 2em;
   padding: 0.6em 1.2em;
   margin-left: .21em;
   font-size: 1em;
@@ -127,4 +126,15 @@ h1 {
 
 .tit{
   margin-top: 80px !important;
+}
+
+#imageURL{
+  width: 150px;
+  margin-top: 25px;
+  border-radius: 50%;
+}
+
+#scoreText{
+  color: rgb(245, 143, 143);
+  font-size: 2.5em ;
 }

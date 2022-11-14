@@ -8,37 +8,36 @@ import { useEffect } from 'react'
 
 function App() {
 
-  const URL = "https://raider.io/api/v1/characters/profile?region=us&realm=area-52&name=NerfTank&fields=mythic_plus_scores";
-
  const getScore = async () => {
- const response = await fetch(URL);
+  const txtRegion = document.getElementById("RegionValue").value;
+  let regionWow = txtRegion;
+
+  const txtRealm = document.getElementById("RealmValue").value;
+  let realmWow = txtRealm;
+  
+  const txtcharName = document.getElementById("charNameValue").value;
+  let charNameWow = txtcharName;
+
+  const URL = 
+  (`https://raider.io/api/v1/characters/profile?region=${regionWow}&realm=${realmWow}&name=${charNameWow}&fields=mythic_plus_scores`);
+    const response = await fetch(URL);
 
  const body = await response.json();
 
- return body.mythic_plus_scores.all;
+ const res = body.mythic_plus_scores.all;
 
+ const resImage = body.thumbnail_url;
+ console.log(resImage)
+
+ console.log(res)
+
+
+ const h3Text = document.getElementById("scoreText");
+ h3Text.innerHTML = res;
+
+ const image = document.getElementById("imageURL").src=resImage;;
+   
 };
-
-  const [count, setCount] = useState(0)
-
-  const [region, setRegion] = useState("");
-
-  const [realm, setRealm] = useState("");
-
-  const [name, setName] = useState("");
-
-  const [score, setScore] = useState("");
-
-  const [url ,setUrl] = useState(null);
-
-  const onClickHandler = async () => {
-    const url = await getScore();
-
-    setUrl(url);
-  };
-
-
-
 
 
   return (
@@ -51,8 +50,7 @@ function App() {
       <h1>Check Raider.IO</h1>
 
   <div className="card">
-  
-  <select name="region" className="buttonn" onChange={event => setRegion(event.target.value)}>
+  <select name="region" id='RegionValue' className="buttonn">
   <option value="us">US</option>
   <option value="eu">EU</option>
   <option value="tw">TW</option>
@@ -62,20 +60,19 @@ function App() {
 </select> 
 
 <label>
-<input className="tex" type="text" placeholder='Realm name' name="realm" onChange={event => setRealm(event.target.value)}/>
+<input id='RealmValue' className="tex" type="text" placeholder='Realm name' name="realm"/>
 </label>
 
   <label>
-    <input className="tex" type="text" placeholder='Character name' name="char" onChange={event => setName(event.target.value)} />
+    <input id='charNameValue' className="tex" type="text" placeholder='Character name' name="char" />
   </label>
-
-  <div></div>
-
       </div>
       
-      <button className="subm" onClick={onClickHandler}>Check Score</button>
+      <button className="subm" onClick={getScore}>Check Score</button>
+
      <div>
-     <h3 id='scoreText'> {url} </h3>
+      <img id='imageURL' src="" alt="" />
+     <h3 id='scoreText'>  </h3>
      <div></div>
      </div>
 
