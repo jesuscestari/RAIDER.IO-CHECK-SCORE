@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import Axios from 'axios'
 import Mark_White from './assets/Mark_White.webp'
 import './App.css'
-import { useEffect } from 'react'
+
 
 
 
@@ -25,6 +23,7 @@ function App() {
  const body = await response.json();
 
  const res = body.mythic_plus_scores.all;
+ 
 
  const resImage = body.thumbnail_url;
  console.log(resImage)
@@ -32,10 +31,16 @@ function App() {
  console.log(res)
 
 
- const h3Text = document.getElementById("scoreText");
- h3Text.innerHTML = res;
+ document.getElementById("scoreText").innerHTML = res;
+ if (res >= 1 && res <= 1000) {
+  document.getElementById("scoreText").style.color = "lightgreen";
+ }else if (res > 1000 && res < 3000) {
+  document.getElementById("scoreText").style.color = "rgb(131, 81, 232)";
+ }else{
+  document.getElementById("scoreText").style.color = "rgb(251, 121, 46)";
+} 
 
- const image = document.getElementById("imageURL").src=resImage;;
+ document.getElementById("imageURL").src= resImage;;
    
 };
 
@@ -56,8 +61,8 @@ function App() {
   <option value="tw">TW</option>
   <option value="kr">KR</option>
   <option value="cn">CN</option>
-  
-</select> 
+</select>
+
 
 <label>
   
