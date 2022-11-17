@@ -2,8 +2,6 @@ import Mark_White from './assets/Mark_White.webp'
 import './App.css'
 
 
-
-
 function App() {
 
  const getScore = async () => {
@@ -30,11 +28,13 @@ function App() {
 
  console.log(res)
 
-
  document.getElementById("scoreText").innerHTML = res;
+
  if (res >= 1 && res <= 1000) {
   document.getElementById("scoreText").style.color = "lightgreen";
- }else if (res > 1000 && res < 3000) {
+ }
+ 
+ if (res > 1000 && res < 3000) {
   document.getElementById("scoreText").style.color = "rgb(131, 81, 232)";
  }else{
   document.getElementById("scoreText").style.color = "rgb(251, 121, 46)";
